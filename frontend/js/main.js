@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (user && token) {
         // Fetch the cart and update the cart count
         try {
-            const response = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart", {
+            const response = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
