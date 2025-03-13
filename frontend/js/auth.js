@@ -1,5 +1,5 @@
 // const backendURL = "http://localhost:5000/api/auth";
-const backendURL = "https://e-commerce-website-1-7hit.onrender.com/api/auth";
+const backendURL = "https://e-store-vmbx.onrender.com/api/auth";
 
 
 // Register User

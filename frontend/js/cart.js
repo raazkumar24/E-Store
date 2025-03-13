@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    const response = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart", {
+    const response = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -359,7 +359,7 @@ function updateCartUI(cart) {
 async function updateCartItem(productId, quantity) {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart/update", {
+    const response = await fetch("https://e-store-vmbx.onrender.com/api/cart/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -377,7 +377,7 @@ async function updateCartItem(productId, quantity) {
     if (!response.ok) throw new Error(data.message || "Failed to update cart");
 
     // Fetch the updated cart data
-    const updatedCartResponse = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart", {
+    const updatedCartResponse = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -395,7 +395,7 @@ async function removeFromCart(productId) {
   try {
     const token = localStorage.getItem("token");
     // const response = await fetch("http://localhost:5000/api/cart/remove",
-    const response = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart/remove", 
+    const response = await fetch("https://e-store-vmbx.onrender.com/api/cart/remove", 
 
        {
       method: "DELETE",
@@ -415,7 +415,7 @@ async function removeFromCart(productId) {
     if (!response.ok) throw new Error(data.message || "Failed to remove item");
 
     // Fetch the updated cart data
-    const updatedCartResponse = await fetch("https://e-commerce-website-1-7hit.onrender.com/api/cart", {
+    const updatedCartResponse = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
