@@ -12,7 +12,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: "https://e-commerce-website-nu-six.vercel.app/", // Replace with your frontend URL
+    origin: "https://e-store-01lg.onrender.com/", // Replace with your frontend URL
     credentials: true
 }));
 
