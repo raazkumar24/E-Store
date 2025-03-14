@@ -1,4 +1,6 @@
-const backendURL = "https://e-store-vmbx.onrender.com/api";
+// const backendURL = "http://localhost:5000/api/auth";
+const backendURL = "https://e-store-vmbx.onrender.com/api/auth";
+
 
 // Register User
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,22 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/auth/register`, {
+        const res = await fetch(`${backendURL}/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, password }),
-          credentials: "include", // ✅ Important for cookies/sessions
         });
-
         const data = await res.json();
         if (res.ok) {
           alert("Registration successful! Please log in.");
-          window.location.href = "pages/login.html";
+          window.location.href = "login.html";
         } else {
           alert(data.message);
         }
       } catch (error) {
-        console.error("Registration error:", error);
+        console.error(error);
       }
     });
   }
@@ -42,13 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/auth/login`, {
+        const res = await fetch(`${backendURL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
-          credentials: "include",
         });
-
         const data = await res.json();
         if (res.ok) {
           localStorage.setItem("token", data.token);
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message);
         }
       } catch (error) {
-        console.error("Login error:", error);
+        console.error(error);
       }
     });
   }
