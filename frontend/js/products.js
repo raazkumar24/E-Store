@@ -411,7 +411,7 @@ function showCustomAlert(imageUrl, productName) {
           </div>
           <div class="product-name">${productName}</div>
           <div class="product-price">Added to your cart</div>
-          <button class="btn-view-cart" onclick="window.location.href='http://127.0.0.1:3000/frontend/pages/cart.html'">View Cart</button>
+          <button class="btn-view-cart" onclick="window.location.href='https://e-store-01lg.onrender.com/pages/cart.html'">View Cart</button>
         </div>
       </div>
     </div>
