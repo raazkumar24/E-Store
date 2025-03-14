@@ -1,5 +1,5 @@
 // const backendURL = "http://localhost:5000/api/auth";
-const backendURL = "https://e-store-vmbx.onrender.com/api/auth";
+// const backendURL = "https://e-store-vmbx.onrender.com/api/auth";
 
 
 // Register User
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/register`, {
+        const res = await fetch("https://e-store-vmbx.onrender.com/api/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, password }),
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/login`, {
+        const res = await fetch("https://e-store-vmbx.onrender.com/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
