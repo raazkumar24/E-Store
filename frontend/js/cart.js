@@ -276,11 +276,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Please log in to view your cart.");
-      window.location.href = "login.html";
-      return;
-    }
+    // if (!token) {
+    //   alert("Please log in to view your cart.");
+    //   window.location.href = "login.html";
+    //   return;
+    // }
 
     const response = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
       headers: { Authorization: `Bearer ${token}` },
