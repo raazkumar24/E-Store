@@ -290,7 +290,7 @@ async function addToCart(productId, quantity) {
 
     // Send a request to add the product to the cart
     // const response = await fetch("https://e-store-vmbx.onrender.com/api/cart/add", 
-    const response = await fetch("https://e-store-vmbx.onrender.com/api/cart/add",
+    const response = await fetch(`${API_URL}/api/cart/add`,
       {
       method: "POST",
       headers: {
@@ -345,7 +345,7 @@ function showCustomAlert(imageUrl, productName) {
           </div>
           <div class="product-name">${productName}</div>
           <div class="product-price">Added to your cart</div>
-          <button class="btn-view-cart" onclick="window.location.href='http://127.0.0.1:3000/frontend/pages/cart.html'">View Cart</button>
+          <button class="btn-view-cart" onclick="window.location.href='cart.html'">View Cart</button>
         </div>
       </div>
     </div>
@@ -377,7 +377,7 @@ async function getCart() {
 
     // Fetch the cart from the backend
     // const response = await fetch("https://e-store-vmbx.onrender.com/api/cart",
-    const response = await fetch("https://e-store-vmbx.onrender.com/api/cart",
+    const response = await fetch(`${API_URL}/api/cart`,
       {
       headers: {
         Authorization: `Bearer ${token}`,

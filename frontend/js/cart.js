@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please log in to view your cart.");
-      window.location.href = "login.html";
+      window.location.href = "pages/login.html";
       return;
     }
 
