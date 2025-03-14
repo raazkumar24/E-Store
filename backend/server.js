@@ -12,9 +12,11 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: "https://e-store-01lg.onrender.com", // Replace with your frontend URL
-    credentials: true
+    origin: ["https://e-store-01lg.onrender.com"], // Ensure frontend URL is correct
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 }));
+
 
 // Connect to Database
 connectDB();
