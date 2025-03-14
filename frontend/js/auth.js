@@ -1,4 +1,4 @@
-const backendURL = "https://e-store-vmbx.onrender.com/api/auth";
+const backendURL = "https://e-store-vmbx.onrender.com/api";
 
 // Register User
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/register`, {
+        const res = await fetch(`${backendURL}/auth/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, password }),
+          credentials: "include", // ✅ Important for cookies/sessions
         });
+
         const data = await res.json();
         if (res.ok) {
           alert("Registration successful! Please log in.");
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message);
         }
       } catch (error) {
-        console.error(error);
+        console.error("Registration error:", error);
       }
     });
   }
@@ -40,11 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const res = await fetch(`${backendURL}/login`, {
+        const res = await fetch(`${backendURL}/auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
+          credentials: "include",
         });
+
         const data = await res.json();
         if (res.ok) {
           localStorage.setItem("token", data.token);
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message);
         }
       } catch (error) {
-        console.error(error);
+        console.error("Login error:", error);
       }
     });
   }
