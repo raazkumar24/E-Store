@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
         if (res.ok) {
           alert("Registration successful! Please log in.");
-          window.location.href = "login.html";
+          window.location.href = "pages/login.html";
         } else {
           alert(data.message);
         }

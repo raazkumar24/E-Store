@@ -144,7 +144,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch products from the backend
     // const res = await fetch("https://e-store-vmbx.onrender.com/api/products");
-    const res = await fetch("https://e-store-vmbx.onrender.com/api/products");
+    const API_URL = "https://e-store-vmbx.onrender.com/api"
+    const res = await fetch(`${API_URL}/products`);
 
     if (!res.ok) throw new Error("Failed to fetch products");
 
@@ -282,7 +283,7 @@ async function addToCart(productId, quantity) {
     //   `https://e-store-vmbx.onrender.com/api/products/${productId}`
     // );
     const productResponse = await fetch(
-      `${API_URL}/api/products/${productId}`
+      `${API_URL}/products/${productId}`
    );
     if (!productResponse.ok) throw new Error("Failed to fetch product details");
 
@@ -290,7 +291,7 @@ async function addToCart(productId, quantity) {
 
     // Send a request to add the product to the cart
     // const response = await fetch("https://e-store-vmbx.onrender.com/api/cart/add", 
-    const response = await fetch(`${API_URL}/api/cart/add`,
+    const response = await fetch(`${API_URL}/cart/add`,
       {
       method: "POST",
       headers: {
@@ -377,7 +378,7 @@ async function getCart() {
 
     // Fetch the cart from the backend
     // const response = await fetch("https://e-store-vmbx.onrender.com/api/cart",
-    const response = await fetch(`${API_URL}/api/cart`,
+    const response = await fetch(`${API_URL}/cart`,
       {
       headers: {
         Authorization: `Bearer ${token}`,
