@@ -1,6 +1,4 @@
-const backendURL = "https://e-store-vmbx.onrender.com/api";
-
-/* ---------------------------- User Authentication State ---------------------------- */
+// User Authentication State
 const user = JSON.parse(localStorage.getItem("user"));
 const token = localStorage.getItem("token");
 
@@ -12,12 +10,16 @@ const userInfo = document.getElementById("user-info");
 
 // Check if user is logged in
 if (user && token) {
-    loggedInSection?.classList.remove("hidden");
-    notLoggedInSection?.classList.add("hidden");
+    // Show logged-in section
+    loggedInSection.classList.remove("hidden");
+    notLoggedInSection.classList.add("hidden");
+
+    // Display user info in dropdown
     userInfo.innerHTML = `Logged in as: <b>${user.name}</b>`;
 } else {
-    loggedInSection?.classList.add("hidden");
-    notLoggedInSection?.classList.remove("hidden");
+    // Show not-logged-in section
+    loggedInSection.classList.add("hidden");
+    notLoggedInSection.classList.remove("hidden");
 }
 
 // Toggle user dropdown
@@ -27,8 +29,8 @@ userIcon?.addEventListener("click", () => {
 
 // Close dropdown when clicking outside
 document.addEventListener("click", (e) => {
-    if (!userDropdown?.contains(e.target) && !userIcon?.contains(e.target)) {
-        userDropdown?.classList.add("hidden");
+    if (!userDropdown.contains(e.target) && !userIcon.contains(e.target)) {
+        userDropdown.classList.add("hidden");
     }
 });
 
@@ -39,29 +41,32 @@ document.getElementById("logout-btn")?.addEventListener("click", () => {
     window.location.href = "pages/login.html";
 });
 
-/* ---------------------------- Mobile Menu Toggle ---------------------------- */
+/* --------------------------------- Mobile Menu Toggle --------------------------------- */
 const mobileMenuButton = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
 
+// Toggle mobile menu
 mobileMenuButton?.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
 });
 
-document.querySelectorAll("#mobile-menu a").forEach(link => {
+// Close mobile menu when a link is clicked
+const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
+mobileMenuLinks.forEach(link => {
     link.addEventListener("click", () => {
         mobileMenu.classList.add("hidden");
     });
 });
 
-/* ---------------------------- Banner Slider ---------------------------- */
-const slides = document.querySelectorAll("[data-slide]");
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
+/* --------------------------------- Banner Slider --------------------------------- */
+const slides = document.querySelectorAll('[data-slide]');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
 let currentSlide = 0;
 
 function showSlide(index) {
     slides.forEach((slide, i) => {
-        slide.style.opacity = i === index ? "1" : "0";
+        slide.style.opacity = i === index ? '1' : '0';
     });
 }
 
@@ -75,20 +80,25 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
-prevButton?.addEventListener("click", prevSlide);
-nextButton?.addEventListener("click", nextSlide);
+nextButton.addEventListener('click', nextSlide);
+prevButton.addEventListener('click', prevSlide);
 
-// Auto-play slider every 5 seconds
+// Auto-play the slider
 setInterval(nextSlide, 5000);
 
-// Show first slide initially
+// Show the first slide initially
 showSlide(currentSlide);
 
-/* ---------------------------- Cart Count Update ---------------------------- */
+
 document.addEventListener("DOMContentLoaded", async () => {
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
     if (user && token) {
+        // Fetch the cart and update the cart count
         try {
-            const response = await fetch(`${backendURL}/cart`, {
+            const response = await fetch("https://e-store-vmbx.onrender.com/api/cart", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -97,8 +107,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!response.ok) throw new Error("Failed to fetch cart");
 
             const cart = await response.json();
-            const cartCountElement = document.getElementById("cart-count");
 
+            // Update the cart count in the header
+            const cartCountElement = document.getElementById("cart-count");
             if (cartCountElement) {
                 const totalItems = cart.products.reduce((total, item) => total + item.quantity, 0);
                 cartCountElement.textContent = totalItems;
@@ -109,21 +120,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-/* ---------------------------- Product Search ---------------------------- */
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector("input[type='text']");
-    const productContainer = document.getElementById("product-list");
+    const productContainer = document.getElementById("product-list"); // Ensure you have this container in HTML
 
     const products = [
         { name: "Laptop", category: "Electronics" },
         { name: "Smartphone", category: "Electronics" },
         { name: "Shoes", category: "Fashion" },
         { name: "T-Shirt", category: "Clothing" },
-        { name: "Headphones", category: "Accessories" },
+        { name: "Headphones", category: "Accessories" }
     ];
 
     function renderProducts(filteredProducts) {
-        productContainer.innerHTML = "";
+        productContainer.innerHTML = ""; // Clear previous results
         filteredProducts.forEach(product => {
             const productItem = document.createElement("div");
             productItem.textContent = product.name;
@@ -132,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    searchInput?.addEventListener("input", (event) => {
+    searchInput.addEventListener("input", (event) => {
         const query = event.target.value.toLowerCase();
         const filteredProducts = products.filter(product =>
             product.name.toLowerCase().includes(query)
@@ -140,5 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderProducts(filteredProducts);
     });
 
+    // Initial rendering of all products
     renderProducts(products);
 });
